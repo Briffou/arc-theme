@@ -29,15 +29,15 @@ ARC_ENABLE([PLANK],         [plank],         [Plank theme],   [disable])
 ARC_ENABLE([OPENBOX],       [openbox],       [Openbox],       [disable])
 
 AS_IF([test "x$ENABLE_TRANSPARENCY" != xno], [
-    AC_SUBST([themedir], [${datadir}/themes/Arc])
-    AC_SUBST([themedarkerdir], [${datadir}/themes/Arc-Darker])
-    AC_SUBST([themedarkdir], [${datadir}/themes/Arc-Dark])
-    AC_SUBST([themelighterdir], [${datadir}/themes/Arc-Lighter])
+    AC_SUBST([themedir], [${datadir}/themes/Arc-Qogir])
+    AC_SUBST([themedarkerdir], [${datadir}/themes/Arc-Qogir-Darker])
+    AC_SUBST([themedarkdir], [${datadir}/themes/Arc-Qogir-Dark])
+    AC_SUBST([themelighterdir], [${datadir}/themes/Arc-Qogir-Lighter])
 ], [
-    AC_SUBST([themedir], [${datadir}/themes/Arc-solid])
-    AC_SUBST([themedarkerdir], [${datadir}/themes/Arc-Darker-solid])
-    AC_SUBST([themedarkdir], [${datadir}/themes/Arc-Dark-solid])
-    AC_SUBST([themelighterdir], [${datadir}/themes/Arc-Lighter-solid])
+    AC_SUBST([themedir], [${datadir}/themes/Arc-Qogir-solid])
+    AC_SUBST([themedarkerdir], [${datadir}/themes/Arc-Qogir-Darker-solid])
+    AC_SUBST([themedarkdir], [${datadir}/themes/Arc-Qogir-Dark-solid])
+    AC_SUBST([themelighterdir], [${datadir}/themes/Arc-Qogir-Lighter-solid])
 ])
 
 AS_IF([test "x$ENABLE_GTK3" != xno], [ARC_GTK3])

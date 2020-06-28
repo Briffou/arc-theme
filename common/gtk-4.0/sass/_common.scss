@@ -1362,7 +1362,7 @@ windowcontrols {
 %titlebar,
 headerbar {
   padding: 0 7px;
-  min-height: 42px;
+  min-height: 38px;
   border-width: 0 0 1px;
   border-style: solid;
   border-color: opacify($header_border, 1);
@@ -1379,10 +1379,10 @@ headerbar {
 
   &:backdrop {
     color: transparentize($header_fg, 0.3);
-    background-color: opacify($header_bg_backdrop, 1);
+    background-color: lighten($header_bg_backdrop, 3%);
     transition: $backdrop_transition;
 
-    .csd & { background-color: $header_bg_backdrop; }
+    .csd & { background-color: lighten($header_bg_backdrop, 3%); }
   }
 
   .title {
@@ -1417,7 +1417,7 @@ headerbar {
     background-color: opacify($header_bg, 1);
     border-color: opacify($header_border, 1);
 
-    &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
+    &:backdrop { background-color: lighten($header_bg_backdrop, 3%); }
   }
 
   &.default-decoration {
@@ -1427,6 +1427,11 @@ headerbar {
     border-bottom-width: 0;
 
     .maximized & { background-color: opacify($header_bg, 1); }
+
+    &:backdrop {
+      background-color: lighten($header_bg_backdrop, 3%);
+      .maximized & { background-color: lighten($header_bg_backdrop, 3%); }
+    }
 
     windowcontrols {
       button,
@@ -2372,6 +2377,8 @@ notebook {
         color: $fg_color;
         background-color: $base_color;
         border-color: $borders_color;
+        font-weight: bold;
+        border-top: solid 2px $selected_bg_color;
       }
 
       // colors the button like the label, overridden otherwise

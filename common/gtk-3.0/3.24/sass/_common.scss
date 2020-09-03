@@ -1053,7 +1053,7 @@ $_header_radius: if($variant=='light' or $variant=='lighter', 4px, 3px);
 headerbar,
 %titlebar {
 
-  min-height: 42px;
+  min-height: 38px;
   padding: 0 7px;
 
   border-width: 0 0 1px;
@@ -1073,9 +1073,9 @@ headerbar,
     transition: $backdrop_transition;
 
     color: transparentize($header_fg, 0.3);
-    background-color: opacify($header_bg_backdrop, 1);
+    background-color: lighten($header_bg_backdrop, 3%);
 
-    .csd & { background-color: $header_bg_backdrop; }
+    .csd & { background-color: lighten($header_bg_backdrop, 3%); }
   }
 
   .title {
@@ -1126,19 +1126,22 @@ headerbar,
     background-color: opacify($header_bg, 1);
     border-color: opacify($header_border, 1);
 
-    &:backdrop { background-color: opacify($header_bg_backdrop, 1); }
+    &:backdrop { background-color: lighten($header_bg_backdrop, 3%); }
   }
 
   &.default-decoration,
-  .csd &.default-decoration,             // needed under wayland, since all gtk3 windows are csd windows
-  &.default-decoration:backdrop,
-  .csd &.default-decoration:backdrop {
+  .csd &.default-decoration {             // needed under wayland, since all gtk3 windows are csd windows
     min-height: 28px;
     padding: 0 3px;
     background-color: opacify($header_bg, 1);
     border-bottom-width: 0;
 
     .maximized & { background-color: opacify($header_bg, 1); }
+
+    &:backdrop {
+      background-color: lighten($header_bg_backdrop, 3%);
+      .maximized & { background-color: lighten($header_bg_backdrop, 3%); }
+    }
   }
 
   separator.titlebutton { @extend %header_separator; }
@@ -1946,6 +1949,8 @@ notebook {
         color: $fg_color;
         background-color: $base_color;
         border-color: $borders_color;
+        font-weight: bold;
+        border-top: solid 2px $selected_bg_color;
       }
       // close button
       button.flat {
@@ -3264,7 +3269,7 @@ headerbar,
   &.default-decoration button.titlebutton { // no vertical padding for ssd buttons
     padding: 0 4px;                        // already handled by the titlebar-padding
     min-width: 0;
-    min-height: 0;
+    min-height: 28px;
     margin: 0;
   }
 
@@ -3298,6 +3303,41 @@ headerbar,
                                                      url('assets/titlebutton-#{$k}#{$m}#{$darker_asset_suffix}@2.png')); }
       }
     }
+  }
+  .maximized & {
+    button.titlebutton {
+    padding: 0;
+    min-width: 24px;
+
+    @include button(undecorated);
+    background-color: transparentize($header_bg, 1);
+
+    &:hover {
+      @include button(header-hover);
+    }
+    &:active, &:checked {
+      @include button(header-active);
+    }
+    &.close, &.maximize, &.minimize {
+      color: transparent;
+      background-color: transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-width: 0;
+
+      &:backdrop { opacity: 1; }
+    }
+    // Load png assets for each button
+    @each $k in ('close', 'minimize') {
+      @each $l, $m in ('',''), (':backdrop','-backdrop'), (':hover','-hover'), (':active','-active') {
+
+        &.#{$k}#{$l} { background-image: -gtk-scaled(url('assets/titlebutton-#{$k}#{$m}#{$darker_asset_suffix}.png'),
+                                                     url('assets/titlebutton-#{$k}#{$m}#{$darker_asset_suffix}@2.png')); }
+        &.maximize#{$l} { background-image: -gtk-scaled(url('assets/titlebutton-unmaximize#{$m}#{$darker_asset_suffix}.png'),
+                                                     url('assets/titlebutton-unmaximize#{$m}#{$darker_asset_suffix}@2.png')); }
+      }
+    }
+  }
   }
 }
 

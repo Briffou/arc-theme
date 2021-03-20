@@ -11,7 +11,7 @@ rules:                      # Array of rules
       - Briffou
   - base: arc-custom
     upstream: master        # Required. Can be a branch in the same forked repo.
-    mergeMethod: merge
+    mergeMethod: rebase
     assignees:              # Optional
       - Briffou
     reviewers:              # Optional
@@ -20,7 +20,7 @@ rules:                      # Array of rules
       - Briffou
   - base: arc-flatabulous
     upstream: master        # Required. Can be a branch in the same forked repo.
-    mergeMethod: merge
+    mergeMethod: rebase
     assignees:              # Optional
       - Briffou
     reviewers:              # Optional
@@ -29,7 +29,7 @@ rules:                      # Array of rules
       - Briffou
   - base: arc-qogir
     upstream: master        # Required. Can be a branch in the same forked repo.
-    mergeMethod: merge
+    mergeMethod: rebase
     assignees:              # Optional
       - Briffou
     reviewers:              # Optional

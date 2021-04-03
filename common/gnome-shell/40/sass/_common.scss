@@ -851,12 +851,14 @@ StScrollBar {
   &:overview {
     background-color: transparent;
     border-color: transparent;
+    border-bottom-width: 0;
 
     .panel-button {
       &:focus, &:active, &:checked {
         &, &.clock-display .clock {
           color: $selected_fg_color;
           border-color: transparent;
+          border-bottom-width: 0;
         }
       }
     }
@@ -869,10 +871,6 @@ StScrollBar {
         color: $_shell_fg_color;
       }
     }
-  }
-
-  #panelLeft, #panelCenter { // spacing between activities<>app menu and such
-    spacing: 8px;
   }
 
   .panel-corner {
@@ -900,7 +898,6 @@ StScrollBar {
     color: $_panel_fg_color;
     transition-duration: 100ms;
     border-width: 0;
-    border-bottom-width: 1px;
     border-color: transparent;
     border-radius: 0;
 
@@ -914,7 +911,6 @@ StScrollBar {
     &:hover {
       background-color: if($variant!='lighter', transparentize(black, 0.83), transparentize(black, 0.95));
       box-shadow: none;
-      border-color: transparent;
     }
 
     @at-root %panel_button_active,
@@ -922,10 +918,8 @@ StScrollBar {
       color: $selected_fg_color;
       background-color: $selected_bg_color;
       box-shadow: none;
-
-      @if $variant != 'lighter' {
-        border-color: black;
-      }
+      border-color: if($variant!='lighter', black, transparent);
+      border-bottom-width: 1px;
     }
 
     .system-status-icon { icon-size: 16px; padding: 0 4px; }
@@ -933,7 +927,6 @@ StScrollBar {
     &.clock-display {
       // Move highlight from .panel-button to .clock
       background: transparent;
-      border-bottom-width: 0;
 
       .clock {
         @extend .panel-button;
@@ -2478,6 +2471,8 @@ $dash_bottom_margin: 20px;
 
   .login-dialog-user-list-item:selected & { color: $selected_fg_color; }
 
+  .unlock-dialog & { color: $_shell_fg_color; }
+
   &:hover {
     color: $osd_fg_color;
   }
@@ -2489,6 +2484,8 @@ $dash_bottom_margin: 20px;
     width: 40px; height: 40px;
 
     .login-dialog-user-list-item:selected & { background-color: transparentize($selected_fg_color, 0.75); }
+
+    .unlock-dialog & { background-color: transparentize($_shell_fg_color, 0.75); }
   }
 
   &.user-avatar {
@@ -2609,6 +2606,8 @@ $dash_bottom_margin: 20px;
   color: $osd_fg_color;
 
   .login-dialog-user-list-item:selected & { color: $selected_fg_color; }
+
+  .unlock-dialog & { color: $_shell_fg_color; }
 }
 
 .user-widget.horizontal .user-widget-label {
@@ -2712,7 +2711,7 @@ $dash_bottom_margin: 20px;
 }
 
 #lockDialogGroup {
-  background-color: opacify($osd_bg_color, 1);
+  background-color: $_system_bg_color;
 }
 
 #unlockDialogNotifications {

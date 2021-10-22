@@ -1,12 +1,12 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=Arc-Flatabulous-Lighter
+Name=@variant_name@
 Comment=A flat theme with transparent elements
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=Arc-Flatabulous-Lighter
-MetacityTheme=Arc-Flatabulous-Lighter
+GtkTheme=@variant_name@
+MetacityTheme=@variant_name@
 IconTheme=Adwaita
 CursorTheme=DMZ-Black
 ButtonLayout=menu:minimize,maximize,close

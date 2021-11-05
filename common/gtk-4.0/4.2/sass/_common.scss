@@ -1439,7 +1439,6 @@ headerbar {
       background-color: lighten($header_bg_backdrop, 3%);
       .maximized & { background-color: lighten($header_bg_backdrop, 3%); }
     }
-
     windowcontrols {
       button,
       menubutton {

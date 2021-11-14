@@ -6,10 +6,10 @@ project(
 )
 
 variant_name = {
-  'light' : (get_option('transparency') ? 'Arc' : 'Arc-solid'),
-  'darker' : (get_option('transparency') ? 'Arc-Darker' : 'Arc-Darker-solid'),
-  'dark' : (get_option('transparency') ? 'Arc-Dark' : 'Arc-Dark-solid'),
-  'lighter' : (get_option('transparency') ? 'Arc-Lighter' : 'Arc-Lighter-solid'),
+  'light' : (get_option('transparency') ? 'Arc-Flatabulous' : 'Arc-Flatabulous-solid'),
+  'darker' : (get_option('transparency') ? 'Arc-Flatabulous-Darker' : 'Arc-Flatabulous-Darker-solid'),
+  'dark' : (get_option('transparency') ? 'Arc-Flatabulous-Dark' : 'Arc-Flatabulous-Dark-solid'),
+  'lighter' : (get_option('transparency') ? 'Arc-Flatabulous-Lighter' : 'Arc-Flatabulous-Lighter-solid'),
 }
 
 prefix = get_option('prefix')

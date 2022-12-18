@@ -77,6 +77,11 @@ stage {
   padding: 4px;
   min-height: 16px;
 
+  &.flat {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
   & > StIcon {
     icon-size: 16px;
     -st-icon-style: symbolic;
@@ -3165,10 +3170,12 @@ $_screenshot_ui_panel_padding: 15px;
 }
 
 .quick-toggle {
-  border-radius: 99px;
+  border-radius: 3px;
   min-width: 12em;
   max-width: 12em;
   min-height: 40px;
+
+  &:first-child { border-radius: 99px}
 
   &:checked { @include button(default); }
 
@@ -3193,8 +3200,12 @@ $_screenshot_ui_panel_padding: 15px;
     background-color: transparentize($fg_color, 0.9);
     padding: 4px 7px;
 
-    &:ltr { border-radius: 0 99px 99px 0; }
-    &:rtl { border-radius: 99px 0 0 99px; }
+    &:ltr { border-radius: 0 3px 3px 0; }
+    &:rtl { border-radius: 3px 0 0 3px; }
+  }
+
+  &:checked .quick-toggle-arrow {
+    background-color: transparentize($selected_fg_color, 0.9);
   }
 }
 
@@ -3220,7 +3231,7 @@ $_screenshot_ui_panel_padding: 15px;
   border-color: $borders_color;
   border-radius: 3px;
   padding: 8px;
-  margin: 8px 12px 0;
+  margin: 8px 16px 0;
 
   .popup-menu-item > StIcon { -st-icon-style: symbolic; }
 
@@ -3233,18 +3244,23 @@ $_screenshot_ui_panel_padding: 15px;
       icon-size: 16px;
       border-radius: 999px;
       padding: 6px;
-      background-color: lighten($bg_color, 10%);
+      border: 1px solid $button_border;
+      background-color: $button_bg;
 
-      &.active { background-color: $selected_bg_color; }
+      &.active {
+        background-color: $selected_bg_color;
+        color: $selected_fg_color;
+        border: 1px solid if($variant!='dark', $selected_bg_color, $button_border);
+      }
     }
 
     & .title {
-      @include fontsize($font-size * 1.6);
+      @include fontsize($font-size * 1.4);
       font-weight: 800;
     }
 
     & .subtitle {
-      @include fontsize($font-size * 1.2);
+      @include fontsize($font-size);
       font-weight: 800;
     }
   }

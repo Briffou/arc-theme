@@ -894,6 +894,7 @@ $ws_dot_inactive: $ws_indicator_height / 6;
   border: 0 solid $shell_osd_border_color;
   border-bottom-width: 1px;
   transition-duration: $panel_transition_duration;
+  box-shadow: none;
 
   // Fix dynamic top bar extension
   &.dynamic-top-bar-white-btn { border-image: none; }
@@ -2016,17 +2017,15 @@ $_dash_bottom_margin: 20px;
 }
 
 .page-navigation-arrow {
-  &  > StIcon {
-    margin: 6px;
-    padding: 18px;
-    width: 24px;
-    height: 24px;
-    border-radius: 99px;
-  }
+  margin: 6px;
+  padding: 18px;
+  width: 24px;
+  height: 24px;
+  border-radius: 99px;
 
-  &:insensitive > StIcon { @include button(osd-insensitive);}
-  &:hover > StIcon { @include button(osd-hover);}
-  &:active > StIcon { @include button(osd-active);}
+  &:insensitive { @include button(osd-insensitive);}
+  &:hover { @include button(osd-hover);}
+  &:active { @include button(osd-active);}
 }
 
 //
@@ -2114,6 +2113,7 @@ $_dash_bottom_margin: 20px;
   border: 1px solid transparentize(darken($dark_sidebar_bg, 25%), 0.5);
   background-color: darken($dark_sidebar_bg, 8%);
   padding: 12px 0;
+  box-shadow: none;
 
   & .folder-name-container {
     padding: 24px 36px 0;
@@ -2813,7 +2813,7 @@ $_dash_bottom_margin: 20px;
     .lg-toolbar-button {
       padding: 5px 10px;
       border-radius: 2px;
-      @extend %button;
+      @extend %osd_button;
 
       & > StIcon { icon-size: 16px; }
     }
@@ -2824,21 +2824,12 @@ $_dash_bottom_margin: 20px;
     -natural-hpadding: 12px;
     -minimum-hpadding: 6px;
     font-weight: bold;
-    color: $osd_fg_color;
-    transition-duration: 100ms;
     padding-left: .3em;
     padding-right: .3em;
     border-radius: 2px;
+    @extend %osd_button;
 
-    &:hover {
-      color: $_panel_fg_color;
-      background-color: transparentize($_panel_fg_color, 0.95);
-    }
-    &:selected {
-      border-bottom-width: 0px;
-      color: $selected_fg_color;
-      background-color: $selected_bg_color;
-    }
+    &:selected { @include button(osd-active); }
   }
   StBoxLayout#EvalBox { padding: 4px; spacing: 4px; }
   StBoxLayout#ResultsArea { spacing: 4px; }
@@ -3246,7 +3237,8 @@ $_screenshot_ui_panel_padding: 15px;
 }
 
 .quick-toggle-menu {
-  background-color: $shell_popup_menu_background_color;
+  background-color: $shell_popup_menu_background_color !important;
+  color: $fg_color !important;
   border-color: $borders_color;
   border-radius: 3px;
   padding: 8px;
